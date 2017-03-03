@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		456B05D11E69197200F7A293 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456B05D01E69197200F7A293 /* User.swift */; };
+		456B05D31E691B2B00F7A293 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456B05D21E691B2B00F7A293 /* Post.swift */; };
 		4571387B1E66853F008D7775 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4571387A1E66853F008D7775 /* ProfileViewController.swift */; };
 		459809A21E613887004DCB71 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459809A11E613887004DCB71 /* AppDelegate.swift */; };
 		459809A41E613887004DCB71 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459809A31E613887004DCB71 /* ViewController.swift */; };
@@ -35,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		456B05D01E69197200F7A293 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		456B05D21E691B2B00F7A293 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		4571387A1E66853F008D7775 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		4598099E1E613887004DCB71 /* Selfigram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Selfigram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		459809A11E613887004DCB71 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -103,6 +107,8 @@
 				459809A31E613887004DCB71 /* ViewController.swift */,
 				459809A51E613887004DCB71 /* Main.storyboard */,
 				4571387A1E66853F008D7775 /* ProfileViewController.swift */,
+				456B05D01E69197200F7A293 /* User.swift */,
+				456B05D21E691B2B00F7A293 /* Post.swift */,
 				459809A81E613887004DCB71 /* Assets.xcassets */,
 				459809AA1E613887004DCB71 /* LaunchScreen.storyboard */,
 				459809AD1E613887004DCB71 /* Info.plist */,
@@ -262,9 +268,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				456B05D11E69197200F7A293 /* User.swift in Sources */,
 				4571387B1E66853F008D7775 /* ProfileViewController.swift in Sources */,
 				459809A41E613887004DCB71 /* ViewController.swift in Sources */,
 				459809A21E613887004DCB71 /* AppDelegate.swift in Sources */,
+				456B05D31E691B2B00F7A293 /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
