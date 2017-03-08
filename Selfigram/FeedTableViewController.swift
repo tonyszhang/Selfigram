@@ -11,11 +11,20 @@ import UIKit
 class FeedTableViewController: UITableViewController {
 
     var words = ["Hello", "my", "name", "is", "Selfigram"]
+    var posts = [Post]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let me = User(name: "Tony", picture: UIImage(named: "Astronaut_Fire")!)
         
+        let post0 = Post(image: UIImage(named: "Astronaut_Fire")!, user: me, comment: "test 0")
+        let post1 = Post(image: UIImage(named: "Astronaut_Fire")!, user: me, comment: "test 1")
+        let post2 = Post(image: UIImage(named: "Astronaut_Fire")!, user: me, comment: "test 2")
+        let post3 = Post(image: UIImage(named: "Astronaut_Fire")!, user: me, comment: "test 3")
+        let post4 = Post(image: UIImage(named: "Astronaut_Fire")!, user: me, comment: "test 4")
+        
+        posts = [post0, post1, post2, post3, post4]
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -46,8 +55,10 @@ class FeedTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath)
 
         // Configure the cell...
+        let post = posts[indexPath.row]
         
-        cell.textLabel?.text = words[indexPath.row]
+        cell.imageView?.image = post.image
+        cell.textLabel?.text = post.comment
 
         return cell
     }
