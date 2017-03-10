@@ -26,7 +26,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     @IBAction func cameraButtonPressed(_ sender: Any) {
-        print("Camera Button Pressed")
+        print("Profile Camera Button Pressed")
         
         // 1: Create an ImagePickerController
         let pickerController = UIImagePickerController()
