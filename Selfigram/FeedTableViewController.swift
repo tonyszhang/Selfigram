@@ -10,27 +10,77 @@ import UIKit
 
 class FeedTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    var words = ["Hello", "my", "name", "is", "Selfigram"]
+//    var words = ["Hello", "my", "name", "is", "Selfigram"]
     var posts = [Post]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let me = User(name: "Tony", picture: UIImage(named: "Astronaut_Fire")!)
-        
-        let post0 = Post(image: UIImage(named: "Astronaut_Fire")!, user: me, comment: "test 0")
-        let post1 = Post(image: UIImage(named: "Astronaut_Fire")!, user: me, comment: "test 1")
-        let post2 = Post(image: UIImage(named: "Astronaut_Fire")!, user: me, comment: "test 2")
-        let post3 = Post(image: UIImage(named: "Astronaut_Fire")!, user: me, comment: "test 3")
-        let post4 = Post(image: UIImage(named: "Astronaut_Fire")!, user: me, comment: "test 4")
-        
-        posts = [post0, post1, post2, post3, post4]
+//        let me = User(name: "Tony", picture: UIImage(named: "Astronaut_Fire")!)
+//        
+//        let post0 = Post(image: UIImage(named: "Astronaut_Fire")!, user: me, comment: "test 0")
+//        let post1 = Post(image: UIImage(named: "Astronaut_Fire")!, user: me, comment: "test 1")
+//        let post2 = Post(image: UIImage(named: "Astronaut_Fire")!, user: me, comment: "test 2")
+//        let post3 = Post(image: UIImage(named: "Astronaut_Fire")!, user: me, comment: "test 3")
+//        let post4 = Post(image: UIImage(named: "Astronaut_Fire")!, user: me, comment: "test 4")
+//        
+//        posts = [post0, post1, post2, post3, post4]
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        
+        let url = URL(string: "https://www.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&api_key=e33dc5502147cf3fd3515aa44224783f&tags=toronto")!
+        
+        let task = URLSession.shared.dataTask(with: url, completionHandler: {(data, response, error) -> Void in
+            
+            //convert to JSON
+            if let jsonUnformated = try? JSONSerialization.jsonObject(with: data!, options: []) {
+                let json = jsonUnformated as? [String: AnyObject]
+                let photosDictionary = json?["photos"] as? [String:AnyObject]
+                let photosArray = photosDictionary?["photo"] as? [[String:AnyObject]]
+                
+                for photo in photosArray! {
+                    
+                    if let farmID = photo["farm"] as? Int,
+                        let serverID = photo["server"] as? String,
+                        let photoID = photo["id"] as? String,
+                        let secret = photo["secret"] as? String {
+                        
+                        let photoURLString = "https://farm\(farmID).staticflickr.com/\(serverID)/\(photoID)_\(secret).jpg"
+                        print(photoURLString)
+                        if let photoURL = URL(string: photoURLString) {
+                            
+                            let me = User(name: "Tony", picture: UIImage(named: "Astronaut_Fire")!)
+                            
+                            let post = Post(imageURL: photoURL, user: me, comment: "From Flicker!")
+                            
+                            self.posts.append(post)
+                        }
+                    }
+                    
+                }
+                
+                OperationQueue.main.addOperation {
+                    self.tableView.reloadData()
+                }
+                
+                //print("\(photosArray)")
+            } else {
+                print("error with response data")
+            }
+            
+            
+            print ("inside dataTaskWithURL with data = \(data!)")
+            
+        })
+        
+        task.resume() //runs the task
+        print ("outside dataTaskWithURL")
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,7 +97,7 @@ class FeedTableViewController: UITableViewController, UIImagePickerControllerDel
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 5
+        return self.posts.count
     }
 
     
@@ -55,12 +105,33 @@ class FeedTableViewController: UITableViewController, UIImagePickerControllerDel
         let cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as! SelfieCell
 
         // Configure the cell...
-        let post = self.posts[indexPath.row]
         
-        cell.selfieImageView.image = post.image
-        cell.usernameLabel.text = post.user.userName
-        cell.commentLabel.text = post.comment
-
+        if !self.posts.isEmpty{
+        
+            let post = self.posts[indexPath.row]
+            
+            
+            cell.selfieImageView.image = nil
+            let task = URLSession.shared.downloadTask(with: post.imageURL) { (url, response, error) -> Void in
+                
+                if let imageURL = url, let imageData = try? Data(contentsOf: imageURL) {
+                    OperationQueue.main.addOperation {
+                        
+                        cell.selfieImageView.image = UIImage(data: imageData)
+                        
+                    }
+                }
+                
+            }
+            
+            task.resume()
+            
+            //cell.selfieImageView.image = post.image
+            cell.usernameLabel.text = post.user.userName
+            cell.commentLabel.text = post.comment
+        
+        }
+        
         return cell
     }
     
@@ -102,9 +173,9 @@ class FeedTableViewController: UITableViewController, UIImagePickerControllerDel
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             
             let me = User(name: "Tony Feed", picture: UIImage(named: "Astronaut_Fire")!)
-            let post = Post(image: image, user: me, comment: "Test Feed")
+            //let post = Post(image: image, user: me, comment: "Test Feed")
             
-            posts.insert(post, at: 0)
+            //posts.insert(post, at: 0)
         }
         
         
