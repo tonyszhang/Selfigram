@@ -18,7 +18,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        usernameLabel.text = "Load Placeholder"
+        usernameLabel.text = "Placeholder Tony"
     }
     
     override func viewWillAppear(_ animated: Bool) {
