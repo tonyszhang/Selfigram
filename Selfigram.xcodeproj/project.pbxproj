@@ -122,15 +122,15 @@
 		459809A01E613887004DCB71 /* Selfigram */ = {
 			isa = PBXGroup;
 			children = (
-				459809A11E613887004DCB71 /* AppDelegate.swift */,
-				459809A51E613887004DCB71 /* Main.storyboard */,
-				45A32EC11E6F89D1006AA0DA /* FeedTableViewController.swift */,
-				45FD05C51E7266B500336D75 /* SelfieCell.swift */,
-				4571387A1E66853F008D7775 /* ProfileViewController.swift */,
 				456B05D01E69197200F7A293 /* User.swift */,
 				456B05D21E691B2B00F7A293 /* Post.swift */,
-				459809A81E613887004DCB71 /* Assets.xcassets */,
+				459809A11E613887004DCB71 /* AppDelegate.swift */,
+				45FD05C51E7266B500336D75 /* SelfieCell.swift */,
+				45A32EC11E6F89D1006AA0DA /* FeedTableViewController.swift */,
+				4571387A1E66853F008D7775 /* ProfileViewController.swift */,
+				459809A51E613887004DCB71 /* Main.storyboard */,
 				459809AA1E613887004DCB71 /* LaunchScreen.storyboard */,
+				459809A81E613887004DCB71 /* Assets.xcassets */,
 				459809AD1E613887004DCB71 /* Info.plist */,
 			);
 			path = Selfigram;

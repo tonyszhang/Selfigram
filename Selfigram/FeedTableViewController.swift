@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class FeedTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -15,6 +16,18 @@ class FeedTableViewController: UITableViewController, UIImagePickerControllerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let query = Post.query() {
+            
+            query.order(byDescending: "createdAt")
+            query.includeKey("user")
+            query.findObjectsInBackground(block: { (posts, error) -> Void in
+                if let posts = posts as? [Post] {
+                    self.posts = posts
+                    self.tableView.reloadData()
+                }
+            })
+        }
         
 //        let me = User(name: "Tony", picture: UIImage(named: "Astronaut_Fire")!)
 //        
@@ -32,54 +45,54 @@ class FeedTableViewController: UITableViewController, UIImagePickerControllerDel
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        
-        let url = URL(string: "https://www.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&api_key=e33dc5502147cf3fd3515aa44224783f&tags=toronto")!
-        
-        let task = URLSession.shared.dataTask(with: url, completionHandler: {(data, response, error) -> Void in
-            
-            //convert to JSON
-            if let jsonUnformated = try? JSONSerialization.jsonObject(with: data!, options: []) {
-                let json = jsonUnformated as? [String: AnyObject]
-                let photosDictionary = json?["photos"] as? [String:AnyObject]
-                let photosArray = photosDictionary?["photo"] as? [[String:AnyObject]]
-                
-                for photo in photosArray! {
-                    
-                    if let farmID = photo["farm"] as? Int,
-                        let serverID = photo["server"] as? String,
-                        let photoID = photo["id"] as? String,
-                        let secret = photo["secret"] as? String {
-                        
-                        let photoURLString = "https://farm\(farmID).staticflickr.com/\(serverID)/\(photoID)_\(secret).jpg"
-                        print(photoURLString)
-                        if let photoURL = URL(string: photoURLString) {
-                            
-                            let me = User(name: "Tony", picture: UIImage(named: "Astronaut_Fire")!)
-                            
-                            let post = Post(imageURL: photoURL, user: me, comment: "From Flicker!")
-                            
-                            self.posts.append(post)
-                        }
-                    }
-                    
-                }
-                
-                OperationQueue.main.addOperation {
-                    self.tableView.reloadData()
-                }
-                
-                //print("\(photosArray)")
-            } else {
-                print("error with response data")
-            }
-            
-            
-            print ("inside dataTaskWithURL with data = \(data!)")
-            
-        })
-        
-        task.resume() //runs the task
-        print ("outside dataTaskWithURL")
+        // Flicker API test run
+//        let url = URL(string: "https://www.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&api_key=e33dc5502147cf3fd3515aa44224783f&tags=toronto")!
+//        
+//        let task = URLSession.shared.dataTask(with: url, completionHandler: {(data, response, error) -> Void in
+//            
+//            //convert to JSON
+//            if let jsonUnformated = try? JSONSerialization.jsonObject(with: data!, options: []) {
+//                let json = jsonUnformated as? [String: AnyObject]
+//                let photosDictionary = json?["photos"] as? [String:AnyObject]
+//                let photosArray = photosDictionary?["photo"] as? [[String:AnyObject]]
+//                
+//                for photo in photosArray! {
+//                    
+//                    if let farmID = photo["farm"] as? Int,
+//                        let serverID = photo["server"] as? String,
+//                        let photoID = photo["id"] as? String,
+//                        let secret = photo["secret"] as? String {
+//                        
+//                        let photoURLString = "https://farm\(farmID).staticflickr.com/\(serverID)/\(photoID)_\(secret).jpg"
+//                        print(photoURLString)
+//                        if let photoURL = URL(string: photoURLString) {
+//                            
+//                            let me = User(name: "Tony", picture: UIImage(named: "Astronaut_Fire")!)
+//                            
+//                            let post = Post(imageURL: photoURL, user: me, comment: "From Flicker!")
+//                            
+//                            self.posts.append(post)
+//                        }
+//                    }
+//                    
+//                }
+//                
+//                OperationQueue.main.addOperation {
+//                    self.tableView.reloadData()
+//                }
+//                
+//                //print("\(photosArray)")
+//            } else {
+//                print("error with response data")
+//            }
+//            
+//            
+//            print ("inside dataTaskWithURL with data = \(data!)")
+//            
+//        })
+//        
+//        task.resume() //runs the task
+//        print ("outside dataTaskWithURL")
         
     }
 
@@ -105,32 +118,41 @@ class FeedTableViewController: UITableViewController, UIImagePickerControllerDel
         let cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as! SelfieCell
 
         // Configure the cell...
+    
+        let post = self.posts[indexPath.row]
         
-        if !self.posts.isEmpty{
+        cell.selfieImageView.image = nil
         
-            let post = self.posts[indexPath.row]
-            
-            
-            cell.selfieImageView.image = nil
-            let task = URLSession.shared.downloadTask(with: post.imageURL) { (url, response, error) -> Void in
-                
-                if let imageURL = url, let imageData = try? Data(contentsOf: imageURL) {
-                    OperationQueue.main.addOperation {
-                        
-                        cell.selfieImageView.image = UIImage(data: imageData)
-                        
-                    }
-                }
-                
+        
+// Flicker API stuff
+//
+//        let task = URLSession.shared.downloadTask(with: post.imageURL) { (url, response, error) -> Void in
+//            
+//            if let imageURL = url, let imageData = try? Data(contentsOf: imageURL) {
+//                OperationQueue.main.addOperation {
+//                    
+//                    cell.selfieImageView.image = UIImage(data: imageData)
+//                    
+//                }
+//            }
+//            
+//        }
+//        
+//        task.resume()
+        
+        //cell.selfieImageView.image = post.image
+        
+        let imageFile = post.image
+        imageFile.getDataInBackground(block: { (data, error) -> Void in
+            if let data = data {
+                let image = UIImage(data: data)
+                cell.selfieImageView.image = image
             }
-            
-            task.resume()
-            
-            //cell.selfieImageView.image = post.image
-            cell.usernameLabel.text = post.user.userName
-            cell.commentLabel.text = post.comment
+        })
         
-        }
+        cell.usernameLabel.text = post.user.username
+        cell.commentLabel.text = post.comment
+    
         
         return cell
     }
@@ -172,12 +194,31 @@ class FeedTableViewController: UITableViewController, UIImagePickerControllerDel
         //    We are getting an image from the UIImagePickerControllerOriginalImage key in that dictionary
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             
-            let me = User(name: "Tony Feed", picture: UIImage(named: "Astronaut_Fire")!)
+            // Flickr API stuff
+            //let me = User(name: "Tony Feed", picture: UIImage(named: "Astronaut_Fire")!)
             //let post = Post(image: image, user: me, comment: "Test Feed")
-            
             //posts.insert(post, at: 0)
+            
+            if let imageData = UIImageJPEGRepresentation(image, 0.9),
+                let imageFile = PFFile(data: imageData),
+                let user = PFUser.current(){
+                
+                let post = Post(image: imageFile, user: user, comment: "Parse rocks!")
+                
+                post.saveInBackground(block: { (success, error) -> Void in
+                    if success {
+                        print("Post successfully saved in Parse")
+                    
+                        self.posts.insert(post, at: 0)
+                        
+                        let indexPath = IndexPath(row: 0, section: 0)
+                        self.tableView.insertRows(at: [indexPath], with: .automatic)
+                    
+                    }
+                    
+                })
+            }
         }
-        
         
         
         dismiss(animated: true, completion: nil)

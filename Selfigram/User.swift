@@ -6,15 +6,18 @@
 //  Copyright © 2017 Tony Shu Zhang. All rights reserved.
 //
 
-import Foundation
-import UIKit
 
-class User {
-    let userName: String
-    let profileImage: UIImage
-    
-    init(name: String, picture: UIImage){
-        userName = name
-        profileImage = picture
-    }
-}
+// Flickr API stuff
+
+//import Foundation
+//import UIKit
+//
+//class User {
+//    let userName: String
+//    let profileImage: UIImage
+//    
+//    init(name: String, picture: UIImage){
+//        userName = name
+//        profileImage = picture
+//    }
+//}

@@ -95,7 +95,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                         }
                     })
                 
-                }
+            }
             
             //2. To our imageView, we set the image property to be the image the user has chosen
             // self.profileImageView.image = image
