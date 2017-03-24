@@ -101,7 +101,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gq3-az-Bdt" id="Daq-IV-WPG">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -130,7 +130,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="320"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="J8o-Ng-Hhh" id="F67-sa-x1U">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="319"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="319.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BOy-xO-G2u">
@@ -151,8 +151,22 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MYv-fX-4du">
+                                            <rect key="frame" x="344" y="258" width="23" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="23" id="VLA-2g-81Q"/>
+                                                <constraint firstAttribute="height" constant="20" id="lDp-IE-FTC"/>
+                                            </constraints>
+                                            <state key="normal" image="hearts-off"/>
+                                            <state key="selected" image="hearts-on"/>
+                                            <connections>
+                                                <action selector="likeButtonClicked:" destination="J8o-Ng-Hhh" eventType="touchUpInside" id="3Vb-KC-EoD"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="MYv-fX-4du" firstAttribute="top" secondItem="BOy-xO-G2u" secondAttribute="bottom" constant="8" id="3PZ-rM-7jg"/>
+                                        <constraint firstAttribute="trailing" secondItem="MYv-fX-4du" secondAttribute="trailing" constant="8" id="QUj-2d-8ZL"/>
                                         <constraint firstItem="6tm-pf-VDs" firstAttribute="leading" secondItem="F67-sa-x1U" secondAttribute="leadingMargin" id="Thj-TI-ZYs"/>
                                         <constraint firstItem="I2U-rb-g4W" firstAttribute="leading" secondItem="F67-sa-x1U" secondAttribute="leadingMargin" id="VrO-z0-OFV"/>
                                         <constraint firstItem="BOy-xO-G2u" firstAttribute="leading" secondItem="F67-sa-x1U" secondAttribute="leading" id="c2y-UU-6gX"/>
@@ -164,6 +178,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="commentLabel" destination="I2U-rb-g4W" id="e6e-s1-cpd"/>
+                                    <outlet property="likeButton" destination="MYv-fX-4du" id="P9l-6M-8vO"/>
                                     <outlet property="selfieImageView" destination="BOy-xO-G2u" id="lbu-xt-MUw"/>
                                     <outlet property="usernameLabel" destination="6tm-pf-VDs" id="feC-lO-NO0"/>
                                 </connections>
@@ -250,5 +265,7 @@
         <image name="News" width="25" height="25"/>
         <image name="Placeholder" width="16" height="16"/>
         <image name="Profile" width="25" height="25"/>
+        <image name="hearts-off" width="42" height="37"/>
+        <image name="hearts-on" width="42" height="37"/>
     </resources>
 </document>
