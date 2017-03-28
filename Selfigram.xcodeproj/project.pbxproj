@@ -17,7 +17,9 @@
 		459809AC1E613887004DCB71 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 459809AA1E613887004DCB71 /* LaunchScreen.storyboard */; };
 		459809B71E613887004DCB71 /* SelfigramTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459809B61E613887004DCB71 /* SelfigramTests.swift */; };
 		459809C21E613887004DCB71 /* SelfigramUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459809C11E613887004DCB71 /* SelfigramUITests.swift */; };
-		45A32EC21E6F89D1006AA0DA /* FeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A32EC11E6F89D1006AA0DA /* FeedTableViewController.swift */; };
+		45A32EC21E6F89D1006AA0DA /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A32EC11E6F89D1006AA0DA /* FeedViewController.swift */; };
+		45E4C6761E89F41200AD7602 /* ActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E4C6751E89F41200AD7602 /* ActivityCell.swift */; };
+		45E4C6781E89F49400AD7602 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E4C6771E89F49400AD7602 /* ActivityViewController.swift */; };
 		45FD05C61E7266B500336D75 /* SelfieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FD05C51E7266B500336D75 /* SelfieCell.swift */; };
 		8109DA25A65DC134038BA7A6 /* Pods_Selfigram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C60744E6EBB4C266B02E84E /* Pods_Selfigram.framework */; };
 		DCC6F8B7C2DC7FD72B2C4009 /* Pods_SelfigramTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F3699DFF4E19FE939FA2E4B /* Pods_SelfigramTests.framework */; };
@@ -62,7 +64,9 @@
 		459809BD1E613887004DCB71 /* SelfigramUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SelfigramUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		459809C11E613887004DCB71 /* SelfigramUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfigramUITests.swift; sourceTree = "<group>"; };
 		459809C31E613887004DCB71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		45A32EC11E6F89D1006AA0DA /* FeedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewController.swift; sourceTree = "<group>"; };
+		45A32EC11E6F89D1006AA0DA /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		45E4C6751E89F41200AD7602 /* ActivityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityCell.swift; sourceTree = "<group>"; };
+		45E4C6771E89F49400AD7602 /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		45FD05C51E7266B500336D75 /* SelfieCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfieCell.swift; sourceTree = "<group>"; };
 		48C53804ABE2EAB7D6FBB921 /* Pods-Selfigram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Selfigram.release.xcconfig"; path = "Pods/Target Support Files/Pods-Selfigram/Pods-Selfigram.release.xcconfig"; sourceTree = "<group>"; };
 		4C60744E6EBB4C266B02E84E /* Pods_Selfigram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Selfigram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,7 +133,9 @@
 				453716DD1E84C6030052BB3C /* Activity.swift */,
 				459809A11E613887004DCB71 /* AppDelegate.swift */,
 				45FD05C51E7266B500336D75 /* SelfieCell.swift */,
-				45A32EC11E6F89D1006AA0DA /* FeedTableViewController.swift */,
+				45A32EC11E6F89D1006AA0DA /* FeedViewController.swift */,
+				45E4C6751E89F41200AD7602 /* ActivityCell.swift */,
+				45E4C6771E89F49400AD7602 /* ActivityViewController.swift */,
 				4571387A1E66853F008D7775 /* ProfileViewController.swift */,
 				459809A51E613887004DCB71 /* Main.storyboard */,
 				459809AA1E613887004DCB71 /* LaunchScreen.storyboard */,
@@ -462,8 +468,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				456B05D11E69197200F7A293 /* User.swift in Sources */,
-				45A32EC21E6F89D1006AA0DA /* FeedTableViewController.swift in Sources */,
+				45A32EC21E6F89D1006AA0DA /* FeedViewController.swift in Sources */,
 				453716DE1E84C6030052BB3C /* Activity.swift in Sources */,
+				45E4C6761E89F41200AD7602 /* ActivityCell.swift in Sources */,
+				45E4C6781E89F49400AD7602 /* ActivityViewController.swift in Sources */,
 				4571387B1E66853F008D7775 /* ProfileViewController.swift in Sources */,
 				45FD05C61E7266B500336D75 /* SelfieCell.swift in Sources */,
 				459809A21E613887004DCB71 /* AppDelegate.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  FeedTableViewController.swift
+//  FeedViewController.swift
 //  Selfigram
 //
 //  Created by Tony Shu Zhang on 2017-03-07.
@@ -9,14 +9,12 @@
 import UIKit
 import Parse
 
-class FeedTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class FeedViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
 //    var words = ["Hello", "my", "name", "is", "Selfigram"]
     var posts = [Post]()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    func getPosts(){
         if let query = Post.query() {
             
             query.order(byDescending: "createdAt")
@@ -28,6 +26,28 @@ class FeedTableViewController: UITableViewController, UIImagePickerControllerDel
                 }
             })
         }
+    }
+    
+    @IBAction func doubleTappedSelfie(_ sender: UITapGestureRecognizer) {
+        //print("double tapped selfie")
+        
+        let tapLocation = sender.location(in: tableView)
+        
+        if let indexPathAtTapLocation = tableView.indexPathForRow(at: tapLocation){
+
+            let cell = tableView.cellForRow(at: indexPathAtTapLocation) as! SelfieCell
+
+            cell.tapAnimation()
+        
+        }
+        
+    }
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        getPosts()
         
 //        let me = User(name: "Tony", picture: UIImage(named: "Astronaut_Fire")!)
 //        
@@ -96,6 +116,13 @@ class FeedTableViewController: UITableViewController, UIImagePickerControllerDel
         
     }
 
+    
+    
+    @IBAction func refreshPulled(_ sender: UIRefreshControl) {
+        
+        getPosts()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -115,6 +142,7 @@ class FeedTableViewController: UITableViewController, UIImagePickerControllerDel
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as! SelfieCell
 
         // Configure the cell...
