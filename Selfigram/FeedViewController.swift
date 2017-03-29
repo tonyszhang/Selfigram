@@ -47,6 +47,8 @@ class FeedViewController: UITableViewController, UIImagePickerControllerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.titleView = UIImageView(image: UIImage(named: "Selfigram"))
+        
         getPosts()
         
 //        let me = User(name: "Tony", picture: UIImage(named: "Astronaut_Fire")!)

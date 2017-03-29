@@ -21,8 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Initialize Parse.
         // Replace XXXX with the App ID and Server URL that you recieved
         let configuration = ParseClientConfiguration { clientConfiguration in
-            clientConfiguration.applicationId = "3642a8f7-f94d-4079-bd13-f42eb79be21d"
-            clientConfiguration.server = "https://ios-tor-pt-parse-server-1.herokuapp.com/parse"
+//            clientConfiguration.applicationId = "3642a8f7-f94d-4079-bd13-f42eb79be21d" // My own test server
+//            clientConfiguration.server = "https://ios-tor-pt-parse-server-1.herokuapp.com/parse"
+            clientConfiguration.applicationId = "5CDeHX2xNhW11QZXr9AvtBbEQY0lft4jpUuMFt9g"
+            clientConfiguration.server = "https://parse-server-ios-main.herokuapp.com/parse"
         }
         Post.registerSubclass()
         Activity.registerSubclass()

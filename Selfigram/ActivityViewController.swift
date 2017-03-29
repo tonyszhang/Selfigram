@@ -15,6 +15,8 @@ class ActivityViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.titleView = UIImageView(image: UIImage(named: "Selfigram"))
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -67,7 +69,7 @@ class ActivityViewController: UITableViewController {
 
         let activity = self.activities[indexPath.row]
         
-        if let liker = activity.post.user.username,
+        if let liker = activity.user.username,
             let userBeingLiked = activity.post.user.username{
             cell.textLabel?.text = "❤️" + " \(liker) liked \(userBeingLiked)'s photo."
         }
